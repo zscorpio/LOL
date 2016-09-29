@@ -13,86 +13,45 @@ import Alamofire
 import SwiftyJSON
 import UIColor_Hex_Swift
 
-class LOLMeController: UIViewController {
+let RECORD_CELL_ID = "LOLRecordCell"
 
+class LOLMeController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+	var tableView = UITableView()
+	let headTopView = LOLMainHeadView()
+	// 懒加载
+	lazy var datas: [Int] = {
+		// 创建一个存放int的数组
+		var nums = [Int]()
+		// 添加数据
+		for i in 0...50 {
+			nums.append(i)
+		}
+		// 返回
+		return nums
+	}()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.view.backgroundColor = UIColor("#E8E8E8")
 		
-		let headView = UIView()
-		self.view.addSubview(headView)
-		headView.snp.makeConstraints { (make) -> Void in
-			make.height.equalTo(115)
-			make.left.right.equalTo(self.view)
-			make.top.equalTo(self.view).offset(64);
-		}
-		headView.backgroundColor = UIColor.white
+		let headView = UIView.init(frame: CGRect(x: 0, y: 0, width: Screen_Width, height: 130))
+//		self.view.addSubview(headView)
+//		headView.snp.makeConstraints { (make) -> Void in
+//			make.height.equalTo(115)
+//			make.left.right.equalTo(self.view)
+//			make.top.equalTo(self.view).offset(64);
+//		}
+//		headView.backgroundColor = UIColor.gray
 		
-		let headTopView = LOLMainHeadView()
 		headView.addSubview(headTopView)
 		headTopView.snp.makeConstraints { (make) -> Void in
-			make.height.equalTo(115)
-			make.left.right.equalTo(self.view)
-			make.top.equalTo(self.view).offset(64);
+			make.height.equalTo(55)
+			make.left.right.equalTo(headView)
+			make.top.equalTo(headView);
 		}
-		headTopView.setUinfo(avatar: "http://ddragon.leagueoflegends.com/cdn/6.18.1/img/profileicon/1.png", name: "Master丶Scorpio", detail: "守望之海  |  铂金III(0)", rank: "Challenger")
 		
-//
-//		
-//		let headAvatarView = UIImageView()
-//		headView.addSubview(headAvatarView)
-//		headAvatarView.backgroundColor = UIColor("#EEE")
-//		headAvatarView.layer.cornerRadius = 20
-//		headAvatarView.layer.masksToBounds = true
-//		headAvatarView.snp.makeConstraints { (make) -> Void in
-//			make.top.equalTo(headView).offset(15)
-//			make.left.equalTo(headView).offset(15)
-//			make.size.equalTo(CGSize(width: 40, height: 40))
-//		}
-//		
-//		let headNameLabel = UILabel()
-//		headView.addSubview(headNameLabel)
-//		headNameLabel.snp.makeConstraints { (make) -> Void in
-//			make.top.equalTo(headAvatarView).offset(10)
-//			make.left.equalTo(headAvatarView.snp.right).offset(10)
-//			make.height.equalTo(12)
-//			make.right.equalTo(headView)
-//		}
-//		headNameLabel.textColor = UIColor("#555");
-//		headNameLabel.text = "未知"
-//		headNameLabel.font = UIFont.systemFont(ofSize: 12)
-//		
-//		let headDetailLabel = UILabel()
-//		headView.addSubview(headDetailLabel)
-//		headDetailLabel.snp.makeConstraints { (make) -> Void in
-//			make.bottom.equalTo(headAvatarView.snp.bottom)
-//			make.left.equalTo(headAvatarView.snp.right).offset(10)
-//			make.height.equalTo(12)
-//			make.right.equalTo(headView)
-//		}
-//		
-//		let detailString:NSString = "守望之海  |  铂金III(0)"
-//		let headDetailLabelString = NSMutableAttributedString(
-//			string: detailString as String,
-//			attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 12),NSForegroundColorAttributeName:UIColor("#8e8e8e")])
-//		
-//		let separator_range = detailString.range(of: "|")
-//		if(separator_range.location != NSNotFound){
-//			headDetailLabelString.addAttribute(NSForegroundColorAttributeName, value: UIColor("#ddd"), range: separator_range)
-//		}
-//		headDetailLabel.attributedText = headDetailLabelString
-//		
-//		let headRankImage = UIImageView()
-//		headView.addSubview(headRankImage)
-//		headRankImage.image = UIImage.init(named: "Challenger")
-//		headRankImage.snp.makeConstraints { (make) -> Void in
-//			make.right.equalTo(headView).offset(-25)
-//			make.top.equalTo(headView).offset(15)
-//			make.size.equalTo(CGSize(width: 48, height: 40))
-//		}
-//		
-		let headBottomView = UIView()
-		self.view.addSubview(headBottomView)
+		let headBottomView = LOLMainBottomView()
+		headView.addSubview(headBottomView)
 		headBottomView.snp.makeConstraints { (make) -> Void in
 			make.height.equalTo(30);
 			make.centerX.equalTo(headView);
@@ -100,78 +59,93 @@ class LOLMeController: UIViewController {
 			make.width.equalTo(320);
 		}
 		
-		let allCountView = LOLDescView()
-		headBottomView.addSubview(allCountView)
-		allCountView.setDetail(title: "4650", desc: "总场数")
+		var array = [[String:Any]]()
 		
-		let winRateView = LOLDescView()
-		headBottomView.addSubview(winRateView)
-		winRateView.setDetail(title: "55%", desc: "胜率")
+		array.append(["key":"总场数","value":"4650"])
+		array.append(["key":"胜率","value":"55%"])
+		array.append(["key":"获赞","value":"256次"])
+		array.append(["key":"游戏年龄","value":"3.5年"])
+
+		headBottomView.setDetail(array: array as NSArray);
 		
-		let praiseCountView = LOLDescView()
-		headBottomView.addSubview(praiseCountView)
-		praiseCountView.setDetail(title: "256次", desc: "获赞")
-		
-		let playAgeView = LOLDescView()
-		headBottomView.addSubview(playAgeView)
-		playAgeView.setDetail(title: "3.5年", desc: "游戏年龄")
-		playAgeView.setBorderHidden(hidden: true)
-		
-		allCountView.snp.makeConstraints { (make) -> Void in
-			make.centerY.equalTo(headBottomView)
-			make.size.equalTo(CGSize(width: 80, height: 30))
-			make.left.equalTo(headBottomView)
+		let headBottomSeparator = UIView()
+		headView.addSubview(headBottomSeparator)
+		headBottomSeparator.backgroundColor = UIColor("#f2f2f2")
+		headBottomSeparator.snp.makeConstraints { (make) -> Void in
+			make.height.equalTo(10);
+			make.left.right.equalTo(headView);
+			make.top.equalTo(headBottomView.snp.bottom).offset(15);
 		}
-		
-		winRateView.snp.makeConstraints { (make) -> Void in
-			make.centerY.equalTo(headBottomView)
-			make.size.equalTo(CGSize(width: 80, height: 30))
-			make.left.equalTo(allCountView.snp.right)
+
+		self.view.addSubview(self.tableView)
+		self.tableView.snp.makeConstraints { (make) -> Void in
+			make.left.right.bottom.equalTo(self.view)
+			make.top.equalTo(self.view).offset(0);
 		}
+		self.tableView.dataSource = self
+		self.tableView.delegate = self
+		self.tableView.tableHeaderView = headView
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: RECORD_CELL_ID)
 		
-		praiseCountView.snp.makeConstraints { (make) -> Void in
-			make.centerY.equalTo(headBottomView)
-			make.size.equalTo(CGSize(width: 80, height: 30))
-			make.left.equalTo(winRateView.snp.right)
+		self.getUinfo()
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return datas.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: RECORD_CELL_ID, for: indexPath) 
+		cell.textLabel!.text = "假数据 - \(datas[indexPath.row])"
+		return cell
+	}
+	
+	func getUinfo() -> Void {
+		let headers: HTTPHeaders = [
+			"DAIWAN-API-TOKEN": "8FF05-E5EFE-A7583-23432"
+		]
+		
+		let gamerName = "Master丶Scorpio".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+		
+		Alamofire.request("http://lolapi.games-cube.com/UserArea?keyword="+gamerName!, headers: headers).responseJSON { response in
+			if(response.result.isSuccess){
+				let json = JSON(response.result.value!)
+				print(json["code"])
+				if(json["code"] == 0){
+					var result: NSArray = []
+					result = json["data"].arrayObject! as NSArray
+					let first_data = result[0] as! NSDictionary
+					let icon_id = first_data["icon_id"] as! NSNumber
+					let icon_id_string = "\(icon_id)"
+					let area = self.getAreaById(id: first_data["area_id"] as! NSInteger)
+					let rankDic = self.getRank(tier: first_data["tier"] as! NSInteger, queue: first_data["queue"] as! NSInteger)
+					let win_point = first_data["win_point"] as! NSNumber
+					let detail = area+"  |  "+rankDic["rank"]!+"("+"\(win_point)"+")"
+					self.headTopView.setUinfo(avatar: "http://ddragon.leagueoflegends.com/cdn/6.18.1/img/profileicon/"+icon_id_string+".png", name: first_data["name"] as! String, detail: detail, rank: rankDic["image"]!)
+				}
+			}
 		}
-		
-		playAgeView.snp.makeConstraints { (make) -> Void in
-			make.centerY.equalTo(headBottomView)
-			make.size.equalTo(CGSize(width: 80, height: 30))
-			make.left.equalTo(praiseCountView.snp.right)
+	}
+	
+	func getRank(tier:NSInteger, queue:NSInteger) -> [String:String] {
+		let tierArray = ["最强王者","钻石","铂金","黄金","白银","青铜"]
+		let imageArray = ["Challenger","Diamond","Platinum","Gold","Silver","Bronze"]
+		let queueArray = ["I","II","III","IⅤ","V"]
+		if(tier == 255 && queue == 255){
+			return ["rank":"无段位","image":"NoRank"]
 		}
-		
-		
-//		let headers: HTTPHeaders = [
-//			"DAIWAN-API-TOKEN": "8FF05-E5EFE-A7583-23432"
-//		]
-//		
-//		let gamerName = "Master丶Scorpio".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-//		
-//		Alamofire.request("http://lolapi.games-cube.com/UserArea?keyword="+gamerName!, headers: headers).responseJSON { response in
-//			if(response.result.isSuccess){
-//				let json = JSON(response.result.value!)
-//				print(json["code"])
-//				if(json["code"] == 0){
-//					var result: NSArray = []
-//					result = json["data"].arrayObject! as NSArray
-//					let first_data = result[0] as! NSDictionary
-//					let icon_id = first_data["icon_id"] as! NSNumber
-//					let icon_id_string = "\(icon_id)"
-//					let url = URL(string: "http://ddragon.leagueoflegends.com/cdn/6.18.1/img/profileicon/"+icon_id_string+".png")!
-//					headAvatarView.sd_setImage(with: url)
-//					
-//					headNameLabel.text = first_data["name"] as? String
-//				}
-//			}
-//		}
+		return ["rank":tierArray[tier]+queueArray[queue],"image":imageArray[queue]]
+	}
+	
+	func getAreaById(id:NSInteger) -> String {
+		let areaArray = ["艾欧尼亚","比尔吉沃特","祖安","诺克萨斯","班德尔城","德玛西亚","皮尔特沃夫","战争学院","弗雷尔卓德","巨神峰","雷瑟守备","无畏先锋","裁决之地","黑色玫瑰","暗影岛","恕瑞玛","钢铁烈阳","水晶之痕","均衡教派","扭曲丛林","教育网专区","影流","守望之海","征服之海","卡拉曼达","巨龙之巢","皮城警备"]
+		return areaArray[id-1]
 	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-
 
 }
 

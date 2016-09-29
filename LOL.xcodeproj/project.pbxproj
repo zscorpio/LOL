@@ -10,6 +10,7 @@
 		8130C41A1D9C0EFB004E4BD8 /* LOLMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8130C4191D9C0EFB004E4BD8 /* LOLMacro.swift */; };
 		81D387A01D9CBED3009AFB3F /* LOLDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D3879F1D9CBED3009AFB3F /* LOLDescView.swift */; };
 		81D387A21D9CE517009AFB3F /* LOLMainHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D387A11D9CE517009AFB3F /* LOLMainHeadView.swift */; };
+		81D387A41D9CED75009AFB3F /* LOLMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D387A31D9CED75009AFB3F /* LOLMainBottomView.swift */; };
 		81D615CA1D9B9DE200E17F95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D615C91D9B9DE200E17F95 /* AppDelegate.swift */; };
 		81D615CC1D9B9DE200E17F95 /* LOLMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D615CB1D9B9DE200E17F95 /* LOLMeController.swift */; };
 		81D615CE1D9B9DE200E17F95 /* LOLDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D615CD1D9B9DE200E17F95 /* LOLDataController.swift */; };
@@ -25,6 +26,7 @@
 		8130C4191D9C0EFB004E4BD8 /* LOLMacro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMacro.swift; sourceTree = "<group>"; };
 		81D3879F1D9CBED3009AFB3F /* LOLDescView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLDescView.swift; sourceTree = "<group>"; };
 		81D387A11D9CE517009AFB3F /* LOLMainHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMainHeadView.swift; sourceTree = "<group>"; };
+		81D387A31D9CED75009AFB3F /* LOLMainBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMainBottomView.swift; sourceTree = "<group>"; };
 		81D615C61D9B9DE200E17F95 /* LOL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D615C91D9B9DE200E17F95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D615CB1D9B9DE200E17F95 /* LOLMeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLMeController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				8130C4191D9C0EFB004E4BD8 /* LOLMacro.swift */,
 				81D3879F1D9CBED3009AFB3F /* LOLDescView.swift */,
 				81D387A11D9CE517009AFB3F /* LOLMainHeadView.swift */,
+				81D387A31D9CED75009AFB3F /* LOLMainBottomView.swift */,
 			);
 			path = LOL;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				81D615E21D9BD5DB00E17F95 /* LOLTabBarController.swift in Sources */,
 				8130C41A1D9C0EFB004E4BD8 /* LOLMacro.swift in Sources */,
 				81D387A01D9CBED3009AFB3F /* LOLDescView.swift in Sources */,
+				81D387A41D9CED75009AFB3F /* LOLMainBottomView.swift in Sources */,
 				81D387A21D9CE517009AFB3F /* LOLMainHeadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
