@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810114D71DA89AC00052456C /* LOLDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810114D21DA89AC00052456C /* LOLDescView.swift */; };
+		810114D81DA89AC00052456C /* LOLMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810114D31DA89AC00052456C /* LOLMainBottomView.swift */; };
+		810114D91DA89AC00052456C /* LOLMainHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810114D41DA89AC00052456C /* LOLMainHeadView.swift */; };
+		810114DA1DA89AC00052456C /* LOLMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810114D51DA89AC00052456C /* LOLMeController.swift */; };
+		810114DB1DA89AC00052456C /* LOLRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810114D61DA89AC00052456C /* LOLRecordTableViewCell.swift */; };
 		8130C41A1D9C0EFB004E4BD8 /* LOLMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8130C4191D9C0EFB004E4BD8 /* LOLMacro.swift */; };
-		81D387A01D9CBED3009AFB3F /* LOLDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D3879F1D9CBED3009AFB3F /* LOLDescView.swift */; };
-		81D387A21D9CE517009AFB3F /* LOLMainHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D387A11D9CE517009AFB3F /* LOLMainHeadView.swift */; };
-		81D387A41D9CED75009AFB3F /* LOLMainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D387A31D9CED75009AFB3F /* LOLMainBottomView.swift */; };
+		81D29C951DA9217A00D3F5DD /* LOLRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D29C941DA9217A00D3F5DD /* LOLRecordViewController.swift */; };
+		81D29C971DA9E32C00D3F5DD /* LOLBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D29C961DA9E32C00D3F5DD /* LOLBaseViewController.swift */; };
+		81D29C991DA9E3B400D3F5DD /* LOLNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D29C981DA9E3B400D3F5DD /* LOLNavigationBar.swift */; };
 		81D615CA1D9B9DE200E17F95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D615C91D9B9DE200E17F95 /* AppDelegate.swift */; };
-		81D615CC1D9B9DE200E17F95 /* LOLMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D615CB1D9B9DE200E17F95 /* LOLMeController.swift */; };
 		81D615CE1D9B9DE200E17F95 /* LOLDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D615CD1D9B9DE200E17F95 /* LOLDataController.swift */; };
 		81D615D31D9B9DE200E17F95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D615D21D9B9DE200E17F95 /* Assets.xcassets */; };
 		81D615D61D9B9DE200E17F95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D615D41D9B9DE200E17F95 /* LaunchScreen.storyboard */; };
@@ -23,13 +27,17 @@
 /* Begin PBXFileReference section */
 		41FAE5E8DF7B2EF8E6BEE9F2 /* Pods-LOL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LOL/Pods-LOL.debug.xcconfig"; sourceTree = "<group>"; };
 		5B8BA6A12FD6BC9FF575B21E /* Pods-LOL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOL.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOL/Pods-LOL.release.xcconfig"; sourceTree = "<group>"; };
+		810114D21DA89AC00052456C /* LOLDescView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLDescView.swift; sourceTree = "<group>"; };
+		810114D31DA89AC00052456C /* LOLMainBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMainBottomView.swift; sourceTree = "<group>"; };
+		810114D41DA89AC00052456C /* LOLMainHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMainHeadView.swift; sourceTree = "<group>"; };
+		810114D51DA89AC00052456C /* LOLMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMeController.swift; sourceTree = "<group>"; };
+		810114D61DA89AC00052456C /* LOLRecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLRecordTableViewCell.swift; sourceTree = "<group>"; };
 		8130C4191D9C0EFB004E4BD8 /* LOLMacro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMacro.swift; sourceTree = "<group>"; };
-		81D3879F1D9CBED3009AFB3F /* LOLDescView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLDescView.swift; sourceTree = "<group>"; };
-		81D387A11D9CE517009AFB3F /* LOLMainHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMainHeadView.swift; sourceTree = "<group>"; };
-		81D387A31D9CED75009AFB3F /* LOLMainBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLMainBottomView.swift; sourceTree = "<group>"; };
+		81D29C941DA9217A00D3F5DD /* LOLRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLRecordViewController.swift; sourceTree = "<group>"; };
+		81D29C961DA9E32C00D3F5DD /* LOLBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLBaseViewController.swift; sourceTree = "<group>"; };
+		81D29C981DA9E3B400D3F5DD /* LOLNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LOLNavigationBar.swift; sourceTree = "<group>"; };
 		81D615C61D9B9DE200E17F95 /* LOL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D615C91D9B9DE200E17F95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		81D615CB1D9B9DE200E17F95 /* LOLMeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLMeController.swift; sourceTree = "<group>"; };
 		81D615CD1D9B9DE200E17F95 /* LOLDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLDataController.swift; sourceTree = "<group>"; };
 		81D615D21D9B9DE200E17F95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81D615D51D9B9DE200E17F95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,6 +58,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		810114D11DA89AC00052456C /* me */ = {
+			isa = PBXGroup;
+			children = (
+				810114D51DA89AC00052456C /* LOLMeController.swift */,
+				810114D41DA89AC00052456C /* LOLMainHeadView.swift */,
+				810114D31DA89AC00052456C /* LOLMainBottomView.swift */,
+				810114D21DA89AC00052456C /* LOLDescView.swift */,
+				810114D61DA89AC00052456C /* LOLRecordTableViewCell.swift */,
+			);
+			path = me;
+			sourceTree = "<group>";
+		};
+		81D29C931DA9213F00D3F5DD /* record */ = {
+			isa = PBXGroup;
+			children = (
+				81D29C941DA9217A00D3F5DD /* LOLRecordViewController.swift */,
+			);
+			path = record;
+			sourceTree = "<group>";
+		};
 		81D615BD1D9B9DE200E17F95 = {
 			isa = PBXGroup;
 			children = (
@@ -71,17 +99,17 @@
 		81D615C81D9B9DE200E17F95 /* LOL */ = {
 			isa = PBXGroup;
 			children = (
+				81D29C931DA9213F00D3F5DD /* record */,
+				810114D11DA89AC00052456C /* me */,
 				81D615C91D9B9DE200E17F95 /* AppDelegate.swift */,
-				81D615CB1D9B9DE200E17F95 /* LOLMeController.swift */,
+				81D615E11D9BD5DB00E17F95 /* LOLTabBarController.swift */,
 				81D615CD1D9B9DE200E17F95 /* LOLDataController.swift */,
+				8130C4191D9C0EFB004E4BD8 /* LOLMacro.swift */,
+				81D29C961DA9E32C00D3F5DD /* LOLBaseViewController.swift */,
+				81D29C981DA9E3B400D3F5DD /* LOLNavigationBar.swift */,
 				81D615D21D9B9DE200E17F95 /* Assets.xcassets */,
 				81D615D41D9B9DE200E17F95 /* LaunchScreen.storyboard */,
 				81D615D71D9B9DE200E17F95 /* Info.plist */,
-				81D615E11D9BD5DB00E17F95 /* LOLTabBarController.swift */,
-				8130C4191D9C0EFB004E4BD8 /* LOLMacro.swift */,
-				81D3879F1D9CBED3009AFB3F /* LOLDescView.swift */,
-				81D387A11D9CE517009AFB3F /* LOLMainHeadView.swift */,
-				81D387A31D9CED75009AFB3F /* LOLMainBottomView.swift */,
 			);
 			path = LOL;
 			sourceTree = "<group>";
@@ -228,13 +256,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				81D615CE1D9B9DE200E17F95 /* LOLDataController.swift in Sources */,
+				81D29C991DA9E3B400D3F5DD /* LOLNavigationBar.swift in Sources */,
+				81D29C971DA9E32C00D3F5DD /* LOLBaseViewController.swift in Sources */,
+				810114D71DA89AC00052456C /* LOLDescView.swift in Sources */,
+				810114D81DA89AC00052456C /* LOLMainBottomView.swift in Sources */,
+				81D29C951DA9217A00D3F5DD /* LOLRecordViewController.swift in Sources */,
+				810114DB1DA89AC00052456C /* LOLRecordTableViewCell.swift in Sources */,
 				81D615CA1D9B9DE200E17F95 /* AppDelegate.swift in Sources */,
-				81D615CC1D9B9DE200E17F95 /* LOLMeController.swift in Sources */,
 				81D615E21D9BD5DB00E17F95 /* LOLTabBarController.swift in Sources */,
+				810114DA1DA89AC00052456C /* LOLMeController.swift in Sources */,
 				8130C41A1D9C0EFB004E4BD8 /* LOLMacro.swift in Sources */,
-				81D387A01D9CBED3009AFB3F /* LOLDescView.swift in Sources */,
-				81D387A41D9CED75009AFB3F /* LOLMainBottomView.swift in Sources */,
-				81D387A21D9CE517009AFB3F /* LOLMainHeadView.swift in Sources */,
+				810114D91DA89AC00052456C /* LOLMainHeadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +302,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -319,6 +352,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -347,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41FAE5E8DF7B2EF8E6BEE9F2 /* Pods-LOL.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = L5LJ88M867;
 				INFOPLIST_FILE = LOL/Info.plist;
@@ -361,6 +396,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B8BA6A12FD6BC9FF575B21E /* Pods-LOL.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = L5LJ88M867;
 				INFOPLIST_FILE = LOL/Info.plist;

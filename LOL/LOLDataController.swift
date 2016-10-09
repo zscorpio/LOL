@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LOLDataController: UIViewController {
+class LOLDataController: LOLBaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

@@ -10,7 +10,7 @@ import UIKit
 
 class LOLTabBarController: UITabBarController {
 
-	var tabBarArray: Array <UINavigationController> = [];
+	var tabBarArray: Array <UIViewController> = [];
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,10 @@ class LOLTabBarController: UITabBarController {
 	func setVC(_ vc:UIViewController, title:NSString, normalImage:NSString, selectedImage:NSString, tag:NSInteger) -> Void {
 		let VC = vc;
 		vc.title = title as String
-		let nav = UINavigationController.init(rootViewController: VC)
 		let image = UIImage.init(named: normalImage as String)
-		nav.tabBarItem.selectedImage = UIImage.init(named: selectedImage as String + "_selected")
-		nav.tabBarItem = UITabBarItem.init(title: title as String, image: image, tag: tag)
-		self.tabBarArray.insert(nav, at: self.tabBarArray.count)
+		VC.tabBarItem.selectedImage = UIImage.init(named: selectedImage as String + "_selected")
+		VC.tabBarItem = UITabBarItem.init(title: title as String, image: image, tag: tag)
+		self.tabBarArray.insert(VC, at: self.tabBarArray.count)
 	}
 	
     override func didReceiveMemoryWarning() {

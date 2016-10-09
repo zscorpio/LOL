@@ -7,5 +7,6 @@ target 'LOL' do
 	pod 'SDWebImage', '~>3.8'
 	pod 'Alamofire', '~> 4.0'
 	pod 'SwiftyJSON'
+	pod 'MJRefresh'
 	pod 'UIColor_Hex_Swift', '~> 3.0.2'
 end
