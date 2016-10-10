@@ -107,23 +107,24 @@ class LOLRecordTableViewCell: UITableViewCell {
 			make.width.equalTo(size.size.width)
 		}
 		if(gameResult){
-			self.gameKDA.textColor = UIColor("#19c8a9")
+			self.gameKDA.textColor = LOLGREEN
 			self.gameResult.text = "胜利"
-			self.gameResult.backgroundColor = UIColor("#19c8a9")
+			self.gameResult.backgroundColor = LOLGREEN
 		}else{
-			self.gameKDA.textColor = UIColor("#ff6767")
+			self.gameKDA.textColor = LOLRED
 			self.gameResult.text = "失败"
-			self.gameResult.backgroundColor = UIColor("#ff6767")
+			self.gameResult.backgroundColor = LOLRED
 		}
 		self.gameDate.text = gameDate
 		
 	}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-		let color = self.gameResult.backgroundColor;
-        super.setSelected(selected, animated: animated)
-		self.gameResult.backgroundColor = color;
-        // Configure the view for the selected state
-    }
-
+	override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+		super.setHighlighted(highlighted, animated: animated)
+		if(highlighted){
+			self.backgroundColor = LOLCELLSELECTEDBG
+		}else{
+			self.backgroundColor = UIColor.white
+		}
+	}
 }

@@ -20,8 +20,6 @@ class LOLMeController: LOLBaseViewController, UITableViewDelegate, UITableViewDa
 	var tableView = UITableView()
 	let headTopView = LOLMainHeadView()
 	let headBottomView = LOLMainBottomView()
-	var qquin:String = ""
-	var vaid_string:String = ""
 	var page_num = 0
 	// 懒加载
 	var combatList = NSMutableArray()
@@ -92,6 +90,8 @@ class LOLMeController: LOLBaseViewController, UITableViewDelegate, UITableViewDa
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		self.tableView.deselectRow(at: indexPath, animated: true)
 		let recordView = LOLRecordViewController()
+		let dic:NSDictionary = self.combatList.object(at: indexPath.row) as! NSDictionary
+		recordView.game_id = String(describing: dic.object(forKey: "game_id")!)
 		self.navigationController?.pushViewController(recordView , animated: true)
 	}
 	
@@ -108,18 +108,16 @@ class LOLMeController: LOLBaseViewController, UITableViewDelegate, UITableViewDa
 		let gameKDAString = gameKDAKill+"/"+gameKDADeath+"/"+gameKDAAssists
 		cell.setDetail(championImage: dic.object(forKey: "champion_avatar") as! String, gameType: dic.object(forKey: "game_type_value") as! String, gameKDA: gameKDAString, gameResult: gameResult, gameDate: gameDate)
 		cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-		cell.selectedBackgroundView = UIView()
-		cell.selectedBackgroundView?.backgroundColor = LOLCELLSELECTEDBG
+		cell.selectionStyle = .none;
 		return cell
 	}
 	
 	func getUinfo() -> Void {
 		let gamerName = "Master丶Scorpio".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
 		
-		Alamofire.request("http://a.com/lol.php?api=uinfo&name="+gamerName!).responseJSON { response in
+		Alamofire.request(BASEURL+"lol.php?api=uinfo&name="+gamerName!).responseJSON { response in
 			if(response.result.isSuccess){
 				let json = JSON(response.result.value!)
-				print(json["code"])
 				if(json["code"] == 0){
 					let result:NSDictionary = json["data"].dictionaryObject! as NSDictionary
 					let win_point = result["win_point"] as! NSNumber
@@ -143,9 +141,9 @@ class LOLMeController: LOLBaseViewController, UITableViewDelegate, UITableViewDa
 					
 					self.headBottomView.setDetail(array: array as NSArray);
 					
-					self.qquin = result["qquin"] as! String
+					LOLUserinfo.sharedInstance.qquin = result["qquin"] as! String
 					let vaid = result["vaid"] as! NSNumber
-					self.vaid_string = "\(vaid)"
+					LOLUserinfo.sharedInstance.vaid = String(describing:vaid)
 					self.loadMore()
 				}
 			}
@@ -154,7 +152,7 @@ class LOLMeController: LOLBaseViewController, UITableViewDelegate, UITableViewDa
 	
 	func loadMore(){
 		// 开始请求战绩
-		let url = "http://a.com/lol.php?api=CombatList&qquin="+self.qquin+"&vaid="+self.vaid_string+"&p="+String(describing: self.page_num);
+		let url = BASEURL+"lol.php?api=CombatList&qquin="+LOLUserinfo.sharedInstance.qquin+"&vaid="+LOLUserinfo.sharedInstance.vaid+"&p="+String(describing: self.page_num);
 		Alamofire.request(url).responseJSON { response in
 			if(response.result.isSuccess){
 				let json = JSON(response.result.value!)

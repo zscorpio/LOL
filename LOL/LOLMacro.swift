@@ -15,6 +15,11 @@ let Screen_Height = UIScreen.main.bounds.size.height
 let LOLLINEGRAY = UIColor("#e5e5e5")
 let LOLBLUE = UIColor("#6ae")
 let LOLCELLSELECTEDBG = UIColor("#f3f3f7")
+let LOLCELLBG = UIColor("#f4f5f6")
+let LOLRED = UIColor("#ff6767")
+let LOLGREEN = UIColor("#19c8a9")
+let BASEURL = "http://a.com/"
+//let BASEURL = "http://zscorpio.com/api/"
 func getTextRectSize(text:NSString,font:UIFont,size:CGSize) -> CGRect {
 	let attributes = [NSFontAttributeName: font]
 	let option = NSStringDrawingOptions.usesLineFragmentOrigin
