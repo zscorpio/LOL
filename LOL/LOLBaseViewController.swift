@@ -28,6 +28,22 @@ class LOLBaseViewController: UIViewController {
 			make.height.equalTo(64);
 			make.width.top.left.equalTo(self.view)
 		}
+		if((self.navigationController) != nil){
+			let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
+			
+			if(viewControllers.count > 1){
+				self.navigationBar.goBack = {
+					self.navigationController?.popViewController(animated: true)
+				}
+
+				self.navigationBar.showBack(show: true)
+				//返回按钮上面的title
+				let previousViewController = viewControllers[viewControllers.count - 2]
+				let title = previousViewController.navigationItem.title!
+				self.navigationBar.setBackTitle(title: title)
+			}
+
+		}
 	}
 	
     override func didReceiveMemoryWarning() {

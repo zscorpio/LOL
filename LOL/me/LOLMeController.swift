@@ -27,8 +27,8 @@ class LOLMeController: LOLBaseViewController, UITableViewDelegate, UITableViewDa
 	var combatList = NSMutableArray()
 	
 	override func viewDidLoad() {
-		super.viewDidLoad()
 		self.title = "战绩"
+		super.viewDidLoad()
 		self.view.backgroundColor = UIColor("#E8E8E8")
 		
 		let headView = UIView.init(frame: CGRect(x: 0, y: 64, width: Screen_Width, height: 120))
