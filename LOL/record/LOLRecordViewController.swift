@@ -14,11 +14,12 @@ import SwiftyJSON
 import UIColor_Hex_Swift
 
 let RECORD_DETAIL_CELL_ID = "LOLRecordDetailCell"
+let RECORD_BASE_CELL_ID = "LOLRecordBaseCell"
 
 class LOLRecordViewController: LOLBaseViewController, UITableViewDelegate, UITableViewDataSource {
 	var game_id:String = ""
 	var tableView = UITableView()
-	var gameDetail = NSArray()
+	var gameDetail = Array(Dictionary<String, AnyObject>())
 
     override func viewDidLoad() {
 		self.title = "战绩详情"
@@ -37,6 +38,7 @@ class LOLRecordViewController: LOLBaseViewController, UITableViewDelegate, UITab
 		self.tableView.backgroundColor = UIColor.white
 		
 		tableView.register(LOLRecordDetailTableViewCell.self, forCellReuseIdentifier: RECORD_DETAIL_CELL_ID)
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: RECORD_BASE_CELL_ID)
 		
 		self.getGameDetail();
     }
@@ -54,9 +56,7 @@ class LOLRecordViewController: LOLBaseViewController, UITableViewDelegate, UITab
 					let time = (result["duration"] as! Int)/60
 					let type = result["game_type_value"] as! String
 					self.updateHeadView(date: show_date, time: String(describing:time)+"分钟", type: type)
-					
-					self.gameDetail = result["team"] as! NSArray
-					
+					self.gameDetail = NSMutableArray(array:(result["team"] as! NSArray))
 					self.tableView.reloadData()
 				}
 			}
@@ -64,7 +64,7 @@ class LOLRecordViewController: LOLBaseViewController, UITableViewDelegate, UITab
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return self.gameDetail.count
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -82,8 +82,6 @@ class LOLRecordViewController: LOLBaseViewController, UITableViewDelegate, UITab
 			make.width.equalTo(60)
 			make.height.equalTo(20)
 		}
-		leftResultLabel.backgroundColor = LOLGREEN
-		leftResultLabel.text = "胜利方"
 		leftResultLabel.font = UIFont.systemFont(ofSize: 12)
 		leftResultLabel.textColor = UIColor.white
 		leftResultLabel.textAlignment = .center
@@ -96,8 +94,17 @@ class LOLRecordViewController: LOLBaseViewController, UITableViewDelegate, UITab
 		}
 		rightResultLabel.text = "杀73死61助攻47钱100000"
 		rightResultLabel.font = UIFont.systemFont(ofSize: 10)
-		rightResultLabel.textColor = LOLGREEN
 		rightResultLabel.textAlignment = .right
+		
+		if(section == 0){
+			leftResultLabel.backgroundColor = LOLGREEN
+			leftResultLabel.text = "胜利方"
+			rightResultLabel.textColor = LOLGREEN
+		}else{
+			leftResultLabel.backgroundColor = LOLRED
+			leftResultLabel.text = "失败方"
+			rightResultLabel.textColor = LOLRED
+		}
 
 		return sectionHeadView
 	}
@@ -107,38 +114,57 @@ class LOLRecordViewController: LOLBaseViewController, UITableViewDelegate, UITab
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
+		if(self.gameDetail.count == 2){
+			return (self.gameDetail[section] as! NSArray).count
+		}else{
+			return 0
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//		self.tableView.deselectRow(at: indexPath, animated: true)
-//		let recordView = LOLRecordViewController()
-//		self.navigationController?.pushViewController(recordView , animated: true)
+		self.tableView.deselectRow(at: indexPath, animated: true)
+		let dic:NSDictionary = ["type" : "detail"]
+		(self.gameDetail[indexPath.section] as AnyObject).add(dic)
+		
+		self.tableView.beginUpdates()
+		let new_indexPath = IndexPath.init(row: indexPath.row, section: indexPath.section)
+		self.tableView.insertRows(at: [new_indexPath], with: .automatic)
+		self.tableView.endUpdates()
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell:LOLRecordDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: RECORD_DETAIL_CELL_ID, for: indexPath) as! LOLRecordDetailTableViewCell
 		if(self.gameDetail.count == 2){
 			let dic = (self.gameDetail[indexPath.section] as! NSArray)[indexPath.row] as! NSDictionary
-			let champion_id = String(describing: dic["champion_id"]!)
-			let level = String(describing: dic["level"]!)
-			let gameKDAKill = String(describing: dic["champions_killed"]!)
-			let gameKDAAssists = String(describing: dic["assists"]!)
-			let gameKDADeath = String(describing: dic["num_deaths"]!)
-			let gameKDAString = gameKDAKill+"/"+gameKDADeath+"/"+gameKDAAssists
-			let eqpts:Array<String> = [
-				"http://ossweb-img.qq.com/images/lol/img/item/"+String(describing: dic["item0"]!)+".png",
-				"http://ossweb-img.qq.com/images/lol/img/item/"+String(describing: dic["item1"]!)+".png",
-				"http://ossweb-img.qq.com/images/lol/img/item/"+String(describing: dic["item2"]!)+".png",
-				"http://ossweb-img.qq.com/images/lol/img/item/"+String(describing: dic["item3"]!)+".png",
-				"http://ossweb-img.qq.com/images/lol/img/item/"+String(describing: dic["item4"]!)+".png",
-				"http://ossweb-img.qq.com/images/lol/img/item/"+String(describing: dic["item5"]!)+".png",
-				"http://ossweb-img.qq.com/images/lol/img/item/"+String(describing: dic["item6"]!)+".png",
-			]
-			cell.setDetail(championImage: "http://cdn.tgp.qq.com/pallas/images/champions_id/"+champion_id+".png", level: level, userName: dic["name"] as! String, kda: gameKDAString, eqpts: eqpts)
+			let type = String(describing: dic["type"]!)
+			if(type == "profile"){
+				let recordCell = tableView.dequeueReusableCell(withIdentifier: RECORD_DETAIL_CELL_ID, for: indexPath) as! LOLRecordDetailTableViewCell
+				let champion_id = String(describing: dic["champion_id"]!)
+				let level = String(describing: dic["level"]!)
+				let gameKDAKill = String(describing: dic["champions_killed"]!)
+				let gameKDAAssists = String(describing: dic["assists"]!)
+				let gameKDADeath = String(describing: dic["num_deaths"]!)
+				let gameKDAString = gameKDAKill+"/"+gameKDADeath+"/"+gameKDAAssists
+				let eqpts:Array<String> = [
+					String(describing: dic["item0"]!),
+					String(describing: dic["item1"]!),
+					String(describing: dic["item2"]!),
+					String(describing: dic["item3"]!),
+					String(describing: dic["item4"]!),
+					String(describing: dic["item5"]!),
+					String(describing: dic["item6"]!),
+				]
+				recordCell.setDetail(championImage: "http://cdn.tgp.qq.com/pallas/images/champions_id/"+champion_id+".png", level: level, userName: dic["name"] as! String, kda: gameKDAString, eqpts: eqpts)
+				recordCell.selectionStyle = .none;
+				return recordCell
+			}else{
+				let cell = tableView.dequeueReusableCell(withIdentifier: RECORD_BASE_CELL_ID, for: indexPath)
+				return cell
+			}
+		}else{
+			let cell = tableView.dequeueReusableCell(withIdentifier: RECORD_BASE_CELL_ID, for: indexPath)
+			cell.selectionStyle = .none;
+			return cell
 		}
-		cell.selectionStyle = .none;
-		return cell
 	}
 	
 	func updateHeadView(date:String, time:String, type:String){

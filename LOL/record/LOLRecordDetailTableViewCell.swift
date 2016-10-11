@@ -83,7 +83,7 @@ class LOLRecordDetailTableViewCell: UITableViewCell {
 
 		let bottomBorder = UILabel()
 		self.addSubview(bottomBorder)
-		bottomBorder.backgroundColor = LOLLINEGRAY
+		bottomBorder.backgroundColor = LOLCELLSELECTEDBG
 		bottomBorder.snp.makeConstraints { (make) -> Void in
 			make.left.equalTo(self).offset(15)
 			make.height.equalTo(1);
